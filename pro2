@@ -1,0 +1,108 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<stdexcept>
+#include<math.h>
+#include<iomanip>
+#include<stdlib.h>
+using namespace std;
+
+string name;
+double score;
+double mean=0.0;
+double sd;
+double sum=0.0;
+double a=0.0;   //before root median num
+// use vectors to store the name score
+vector<string> student_names;
+vector<double> student_scores;
+
+//get the information from the students 
+int GetStudentInf()
+{
+  string name;
+  double score;
+  string str;
+  while(true)
+  {
+  cout<<"please enter your name:"<<endl;
+  getline(cin,name);
+  if(name.compare("none")==0){break;}cin.clear();cin.sync();
+   student_names.push_back(name);
+
+  cout<<"please enter your score: "<<endl;
+  getline(cin,str);
+  score=atof(str.c_str());
+  try{
+    if(score>100.0||score<0.0)
+    { throw out_of_range("this score is incorrect");}
+  
+ student_scores.push_back(score);
+ }  
+  
+  catch(out_of_range error)
+    {cout<<error.what()<<"try input this score again"<<endl;
+      cin.clear();cin.sync();
+}
+  }
+
+}
+
+
+void StanderDeviation()
+{
+  
+  for(int i=0;i<student_scores.size();i++)
+    { sum=sum+student_scores.at(i);}
+      mean=sum/student_scores.size();
+
+      for(int i=0;i<student_scores.size();i++)
+     {a=a+pow((student_scores.at(i)-mean),2.0);}
+      sd=sqrt(a/student_scores.size());
+
+  cout<<endl<<endl;
+  cout<<"Grading scale"<<endl;
+  cout<<"A above "<<setprecision(3)<<mean+1.5*sd<<"%"<<endl;
+  cout<<"B "<<setprecision(3)<<mean+0.5*sd<<"%-"<<mean+1.5*sd<<"%"<<endl;
+  cout<<"C "<<setprecision(3)<<mean-0.5*sd<<"%-"<<mean+0.5*sd<<"%"<<endl;
+  cout<<"D "<<setprecision(3)<<mean-1.5*sd<<"%-"<<mean-0.5*sd<<"%"<<endl;
+  cout<<"E below "<<setprecision(3)<<mean-1.5*sd<<"%"<<endl;
+
+}
+
+
+
+  char choice(double score)
+{
+  if(score>mean+1.5*sd) return'A';
+  else if(score>mean+0.5*sd&&score<mean+1.5*sd) return 'B';
+  else if(score>mean-0.5*sd&&score<mean+0.5*sd) return 'C';
+  else if(score>mean-1.5*sd&&score<mean-0.5*sd) return 'D';
+  else return 'F';
+} 
+
+
+int main()
+{
+  cout<<"Put in name and score correctly or enter *none* to end of it"<<endl;
+ GetStudentInf();
+ StanderDeviation();
+ vector<char> level; 
+cout<<"name   "<<"       score"<<"      Grade"<<endl;
+ for(int i=0;i<student_names.size();i++)
+   {
+     cout<<i+1<<"."<<student_names.at(i)<<"     "<<student_scores.at(i)<<"%"<<"     "<<choice(student_scores.at(i))<<endl;
+}
+
+ cout<<"Clss average ="<<setprecision(3)<<mean<<"%"<<endl;
+ cout<<"Standerd deviation ="<<setprecision(3)<<sd<<endl;
+  
+  return 0;
+
+
+}
+
+
+ 
+
+
