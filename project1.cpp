@@ -2,7 +2,8 @@
 #include<iostream>
 using namespace std;
 
-int main(){
+  int main()
+{
   int row1,col1;
   int row2,col2;
   cout<<"Input the first Matrix's row:"<<endl;
@@ -13,9 +14,9 @@ int main(){
   cin>>row2;
   cout<<"Then input the secong Matrix's column:"<<endl;
   cin>>col2;
-
- if(col1!=row2){cout<<"Your Input is not right"<<endl;return 1;}
-  
+ 
+  if(col1!=row2||row1<0||row2<0||col1<0||col2<0){cout<<"Your Input is not right"<<endl;return 1;}
+ 
  else{
    cout<<"Now please input all the members of these two matrix one by one"<<endl;
   vector<vector<int> > M1(row1);
