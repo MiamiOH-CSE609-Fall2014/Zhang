@@ -1,0 +1,41 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include<map>
+#include"digramFreqMatrix.h"
+using namespace std;
+
+vector< vector<int> > digramFreqMatrix(map<string,int> freq)
+{
+  vector< vector<int> > matrix;
+  vector<int> vectorA;
+  vector<int> vector_G;
+  vector<int> vector_C;
+  vector<int> vector_T;
+  vectorA.push_back(freq["AA"]);
+  vectorA.push_back(freq["AC"]);
+  vectorA.push_back(freq["AG"]);
+  vectorA.push_back(freq["AT"]);
+  matrix.push_back(vectorA);
+
+  vector_G.push_back(freq["GA"]);
+  vector_G.push_back(freq["GC"]);
+  vector_G.push_back(freq["GG"]);
+  vector_G.push_back(freq["GT"]);
+  matrix.push_back(vector_G);
+
+  vector_C.push_back(freq["CA"]);
+  vector_C.push_back(freq["CC"]);
+  vector_C.push_back(freq["CG"]);
+  vector_C.push_back(freq["CT"]);
+  matrix.push_back(vector_C);
+
+  vector_T.push_back(freq["TA"]);
+  vector_T.push_back(freq["TC"]);
+  vector_T.push_back(freq["TG"]);
+  vector_T.push_back(freq["TT"]);
+  matrix.push_back(vector_T);
+
+  return matrix;
+
+}

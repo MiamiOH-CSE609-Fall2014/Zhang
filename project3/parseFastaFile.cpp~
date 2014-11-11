@@ -1,4 +1,4 @@
-#include<string>
+#include<sting>
 #include<iostream>
 #include<vector>
 #include<tuple>
