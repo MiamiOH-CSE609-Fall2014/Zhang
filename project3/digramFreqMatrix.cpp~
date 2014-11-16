@@ -1,41 +1,49 @@
 #include<iostream>
-#include<string>
+#include<string.h>
 #include<vector>
 #include<map>
+#include<fstream>
+#include<stdlib.h>
 #include"digramFreqMatrix.h"
 using namespace std;
 
 vector< vector<int> > digramFreqMatrix(map<string,int> freq)
 {
-  vector< vector<int> > matrix;
-  vector<int> vectorA;
-  vector<int> vector_G;
-  vector<int> vector_C;
-  vector<int> vector_T;
-  vectorA.push_back(freq["AA"]);
-  vectorA.push_back(freq["AC"]);
-  vectorA.push_back(freq["AG"]);
-  vectorA.push_back(freq["AT"]);
-  matrix.push_back(vectorA);
+  vector< vector<int> > freqm;
+  vector<int> tv;
+  //vector<int> vector_G;
+  //vector<int> vector_C;
+  //vector<int> vector_T;
+  
+  tv.push_back(freq["AA"]);
+  tv.push_back(freq["AG"]);
+  tv.push_back(freq["AC"]);
+  tv.push_back(freq["AT"]);
+  freq.push_back(tv);
+  tv.clear();
+  //I use the clear func so do not need to vectorG/C/T
+  
+  tv.push_back(freq["GA"]);
+  tv.push_back(freq["GG"]);
+  tv.push_back(freq["GC"]);
+  tv.push_back(freq["GT"]);
+  freq.push_back(tv);
+  tv.clear();
 
-  vector_G.push_back(freq["GA"]);
-  vector_G.push_back(freq["GC"]);
-  vector_G.push_back(freq["GG"]);
-  vector_G.push_back(freq["GT"]);
-  matrix.push_back(vector_G);
+  tv.push_back(freq["CA"]);
+  tv.push_back(freq["CG"]);
+  tv.push_back(freq["CC"]);
+  tv.push_back(freq["CT"]);
+  matrix.push_back(tv);
+  tv.clear();
 
-  vector_C.push_back(freq["CA"]);
-  vector_C.push_back(freq["CC"]);
-  vector_C.push_back(freq["CG"]);
-  vector_C.push_back(freq["CT"]);
-  matrix.push_back(vector_C);
+  tv.push_back(freq["TA"]);
+  tv.push_back(freq["TG"]);
+  tv.push_back(freq["TC"]);
+  tv.push_back(freq["TT"]);
+  freq.push_back(tv);
+  tv.clear();
 
-  vector_T.push_back(freq["TA"]);
-  vector_T.push_back(freq["TC"]);
-  vector_T.push_back(freq["TG"]);
-  vector_T.push_back(freq["TT"]);
-  matrix.push_back(vector_T);
-
-  return matrix;
+  return freqm;
 
 }

@@ -1,5 +1,6 @@
 #include<map>
 #include<string>
 #include<vector>
+
 using namespace std;
-vector<vector<int>> digramFreqMartrix(map<string>,int);
+vector< vector<int> > digramFreqMartrix(map<string,int>);

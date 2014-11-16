@@ -1,26 +1,26 @@
-#include<sting>
+#include<string>
 #include<iostream>
 #include<vector>
-#include<tuple>
+#include<map>
 #include<fstream>
-#include<cstdlib>
+#include<stdlib.h>
 #include"parseFastaFile.h"
 using namespace std;
+// give a new object with one parameter 
+//named path
 
-tuple<string,vector<string>,string> parseFastaFile(string filepath)
+ReturnedData parseFastaFile(string path)
 {
-  string header;
-  string sequence;
-  vector<string> comments;
-  fstream dnaData;
-  dnaData.open(filepath,fstream::in);
+  fstream dataFile;
+  dataFile.open(path,fstream::in);
+  ReturnedData R;
   char buf[200];
-  while(dnaData.getline(buf,200))
+  while(dataFile.getline(buf,200))
     {
-      if(buf[0]=='>'){header=buf;}
-      else if(buf[0]==';'){comments.push_back(buf);}
-      else{sequence=sequence+buf;}
+      if(buf[0]=='>'){R.head=buf;}
+      else if(buf[0]==';'){R.comm.push_back(buf);}
+      else R.seq=R.seq+buf;
 }
-  tuple<string,vector<string>,string> DNA{header,comments,sequence};
-  return DNA;
+ 
+  return R;
 }
